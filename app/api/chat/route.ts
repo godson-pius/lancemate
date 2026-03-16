@@ -1150,10 +1150,10 @@ User's question: ${prompt}`;
     });
 
     return respond(aiResponse.text as string);
-  } catch (error) {
+  } catch (error: any) {
     console.error("[/api/chat] Error:", error);
     return NextResponse.json(
-      { error: "Something went wrong. Please try again." },
+      { error: "Something went wrong. Please try again.", details: error?.message || String(error) },
       { status: 500 }
     );
   }
